@@ -35,3 +35,8 @@ out/
 
 ### VS Code ###
 .vscode/
+
+
+
+### QueryDsl ###
+/src/main/generated/dev/jjk/portfoliogallery/temp/
