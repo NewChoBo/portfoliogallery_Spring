@@ -35,3 +35,6 @@ out/
 
 ### VS Code ###
 .vscode/
+/src/main/resources/secrets.properties
+/firebase.json
+/src/main/generated/dev/jjk/portfoliogallery/
