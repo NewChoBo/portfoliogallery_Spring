@@ -20,5 +20,5 @@ public class Portfolio {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long portfolioId;
 	private String userId;
-	private String thum;
+	private String thumb;
 }
