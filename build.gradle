@@ -9,10 +9,10 @@ compileJava.options.encoding = 'UTF-8'
 compileTestJava.options.encoding = 'UTF-8'
 
 checkstyle {
-    maxWarnings = 0 // 규칙이 어긋나는 코드가 하나라도 있을 경우 빌드 fail을 내고 싶다면 이 선언을 추가한다.
+    maxWarnings = 0
     configFile = file("${rootDir}/naver-checkstyle-rules.xml")
     configProperties = ["suppressionFile": "${rootDir}/naver-checkstyle-suppressions.xml"]
-    toolVersion = "8.24"  // checkstyle 버전 8.24 이상 선언
+    toolVersion = "8.24"
 }
 
 group = 'dev.jjk'
@@ -33,12 +33,12 @@ repositories {
 }
 
 dependencies {
-    //저장할때마다 자동 빌드
     implementation 'org.springframework.boot:spring-boot-devtools'
 
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
     implementation 'org.springframework.boot:spring-boot-starter-web'
+
     compileOnly 'org.projectlombok:lombok'
     runtimeOnly 'com.h2database:h2'
     runtimeOnly 'com.oracle.database.jdbc:ojdbc8'
@@ -46,23 +46,20 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
-    // ⭐1. Spring boot 3.x이상에서 QueryDsl 패키지를 정의하는 방법
-    // 참고 : https://velog.io/@wonizizi99/Spring-QueryDsl-gradle-%EC%84%A4%EC%A0%95-Spring-boot-3.0-%EC%9D%B4%EC%83%81
     implementation 'com.querydsl:querydsl-jpa:5.0.0:jakarta'
     annotationProcessor "com.querydsl:querydsl-apt:5.0.0:jakarta"
+    
     annotationProcessor "jakarta.annotation:jakarta.annotation-api"
     annotationProcessor "jakarta.persistence:jakarta.persistence-api"
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
-
-    // swagger
-    // 참고 : https://resilient-923.tistory.com/414
-    // groupId:artifactId:version
     implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.4'
 
-    // firebase 관련
     implementation 'com.google.firebase:firebase-admin:9.1.1'
+
+    implementation 'org.modelmapper:modelmapper:3.1.1'
+
 //    implementation 'org.springframework.boot:spring-boot-starter-security'
 }
 
