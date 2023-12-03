@@ -1,12 +1,10 @@
-package dev.jjk.portfoliogallery.features.user;
-
-import java.util.concurrent.ExecutionException;
-
-import org.springframework.stereotype.Service;
+package dev.jjk.portfoliogallery.submodule.firebase.service;
 
 import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.Firestore;
 import com.google.firebase.cloud.FirestoreClient;
+import java.util.concurrent.ExecutionException;
+import org.springframework.stereotype.Service;
 
 @Service
 public class FirestoreService {
@@ -18,10 +16,13 @@ public class FirestoreService {
 	}
 
 	public Object getDataFromFirestore(String collectionName, String documentId) throws
-		ExecutionException,
-		InterruptedException {
+			ExecutionException,
+			InterruptedException {
 		Firestore firestore = FirestoreClient.getFirestore();
-		DocumentReference docRef = firestore.collection(collectionName).document(documentId);
-		return docRef.get().get().getData();
+		DocumentReference docRef = firestore.collection(collectionName)
+																				.document(documentId);
+		return docRef.get()
+								 .get()
+								 .getData();
 	}
 }

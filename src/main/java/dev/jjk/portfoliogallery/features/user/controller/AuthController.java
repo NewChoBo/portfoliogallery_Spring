@@ -1,15 +1,15 @@
-package dev.jjk.portfoliogallery.features.user;
+package dev.jjk.portfoliogallery.features.user.controller;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthException;
+import com.google.firebase.auth.UserRecord;
+import dev.jjk.portfoliogallery.features.user.dto.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseAuthException;
-import com.google.firebase.auth.UserRecord;
 
 @RestController
 public class AuthController {
@@ -20,16 +20,17 @@ public class AuthController {
 	@PostMapping("/signup")
 	public ResponseEntity<String> signUp(@RequestBody UserDTO userDTO) {
 		try {
-			UserRecord.CreateRequest request = new UserRecord
-				.CreateRequest()
-				.setEmail(userDTO.getEmail())
-				.setPassword(userDTO.getPassword())
-				.setDisplayName(userDTO.getDisplayName());
+			UserRecord.CreateRequest request = new UserRecord.CreateRequest().setEmail(userDTO.getEmail())
+																																			 .setPassword(
+																																					 userDTO.getPassword())
+																																			 .setDisplayName(
+																																					 userDTO.getDisplayName());
 
 			UserRecord userRecord = firebaseAuth.createUser(request);
 			return ResponseEntity.ok("User created successfully: " + userRecord.getUid());
 		} catch (FirebaseAuthException e) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+													 .body(e.getMessage());
 		}
 	}
 

@@ -1,8 +1,8 @@
 package dev.jjk.portfoliogallery.features.portfolio.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-
 import dev.jjk.portfoliogallery.features.portfolio.entity.Portfolio;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface PortfolioRepository extends JpaRepository<Portfolio, Long> {
 }
+

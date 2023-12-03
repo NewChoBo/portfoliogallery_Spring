@@ -1,4 +1,4 @@
-package dev.jjk.portfoliogallery.features.user;
+package dev.jjk.portfoliogallery.features.user.dto;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -10,6 +10,7 @@ import lombok.Setter;
 @Setter
 @Entity
 public class UserDTO {
+
 	@Id
 	@GeneratedValue
 	private long Id;

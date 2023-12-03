@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class PortfolioDto {
+
 	private Long portfolioId;
 	private String userId;
 	private String thumb;
