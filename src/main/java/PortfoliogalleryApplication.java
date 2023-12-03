@@ -7,5 +7,4 @@ public class PortfoliogalleryApplication {
   public static void main(String[] args) {
     SpringApplication.run(PortfoliogalleryApplication.class, args);
   }
-
 }

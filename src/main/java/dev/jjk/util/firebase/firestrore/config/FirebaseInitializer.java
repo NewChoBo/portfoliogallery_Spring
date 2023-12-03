@@ -1,20 +1,19 @@
-package dev.jjk.portfoliogallery.global.config;
-
-import java.io.FileInputStream;
-import java.io.IOException;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+package dev.jjk.util.firebase.firestrore.config;
 
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
 import com.google.firebase.auth.FirebaseAuth;
+import java.io.FileInputStream;
+import java.io.IOException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class FirebaseInitializer {
+
 	private static final Logger log = LoggerFactory.getLogger(FirebaseInitializer.class);
 
 	@Bean
@@ -22,8 +21,11 @@ public class FirebaseInitializer {
 		log.info("Firebase 초기화 중.");
 		FileInputStream serviceAccount = new FileInputStream("firebase.json");
 
-		FirebaseOptions options = FirebaseOptions.builder().setCredentials(
-			GoogleCredentials.fromStream(serviceAccount)).setStorageBucket("heroku-sample.appspot.com").build();
+		FirebaseOptions options = FirebaseOptions.builder()
+																						 .setCredentials(
+																								 GoogleCredentials.fromStream(serviceAccount))
+																						 .setStorageBucket("heroku-sample.appspot.com")
+																						 .build();
 
 		FirebaseApp app = FirebaseApp.initializeApp(options);
 		log.info("FirebaseApp 초기화됨: " + app.getName());

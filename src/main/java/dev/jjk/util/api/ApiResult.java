@@ -1,7 +1,6 @@
-package dev.jjk.portfoliogallery.global.api;
+package dev.jjk.util.api;
 
 import java.util.Map;
-
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Singular;

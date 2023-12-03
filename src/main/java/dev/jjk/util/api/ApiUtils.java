@@ -1,4 +1,4 @@
-package dev.jjk.portfoliogallery.global.api;
+package dev.jjk.util.api;
 
 public class ApiUtils {
 	public static ApiResult.ApiResultBuilder success() {

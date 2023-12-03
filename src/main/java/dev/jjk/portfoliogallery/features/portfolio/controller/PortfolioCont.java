@@ -2,7 +2,7 @@ package dev.jjk.portfoliogallery.features.portfolio.controller;
 
 import dev.jjk.portfoliogallery.features.portfolio.dto.PortfolioDto;
 import dev.jjk.portfoliogallery.features.portfolio.service.PortfolioService;
-import dev.jjk.portfoliogallery.global.api.ApiResult;
+import dev.jjk.util.api.ApiResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.CrossOrigin;
