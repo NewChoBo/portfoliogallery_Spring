@@ -4,3 +4,58 @@
 DB 설정정보 secrets에 넣어두고, properties 클래스에서 등록 설정
 
 swagger : http://localhost:20001/swagger-ui/index.html
+
+Jenkins pipeline
+pipeline {
+agent any
+
+    stages {
+        stage('github Clone') {
+            steps {
+               git credentialsId: 'NewChoBo', url: 'https://github.com/NewChoBo/portfoliogallery_Spring.git'
+            }
+        }
+        stage('Setup Config & Secret Files') {
+            steps {
+                script {
+                    withCredentials([
+                        file(credentialsId: 'PortfolioGallery_Spring_firebase.json', variable: 'FIREBASE_FILE'),
+                        file(credentialsId: 'PortfolioGallery_Spring_secrets.properties', variable: 'SECRETS_FILE')
+                    ]) {
+                        sh '''
+                            rm -f ./firebase.json
+                            rm -f ./src/main/resources/secrets.properties
+                            cp "$FIREBASE_FILE" ./firebase.json
+                            cp "$SECRETS_FILE" ./src/main/resources/secrets.properties
+                        '''
+                    }
+                }
+            }
+        }
+        stage('build') {
+            steps {
+               sh ''' 
+                echo 'start bootJar' 
+                chmod +x gradlew
+                ./gradlew clean bootJar
+                '''
+            }
+        }
+        stage('Deploy') {
+            steps {
+                script {
+                    def port = 20001 // 배포할 포트 번호
+                    def isPortOccupied = sh(script: "nc -z localhost ${port}", returnStatus: true) == 0
+                    if (isPortOccupied) {
+                        echo "Port ${port} is already in use. Trying to stop the process..."
+                        sh "fuser -k ${port}/tcp"
+                        sleep 5
+                    }
+                    echo 'Deploying to Raspberry Pi'
+                    sh 'java -jar ./build/libs/portfoliogallery*.jar'
+                }
+            }
+        }
+    }
+
+}
